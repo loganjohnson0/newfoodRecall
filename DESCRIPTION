@@ -1,11 +1,14 @@
 Package: newfoodRecall
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Extracts and Visualizes Food Recall Data
 Version: 0.1.0
-Author: Who wrote it
+Authors@R: c(
+    person("Logan", "Johnson", , "logan01@iastate.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-9773-5027")))
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.3.2
