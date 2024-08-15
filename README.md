@@ -1,52 +1,67 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# newfoodRecall
+# foodRecall
 
 <!-- badges: start -->
-<!-- badges: end -->
 
-The goal of newfoodRecall is to …
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/loganjohnson0/newfoodRecall/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/loganjohnson0/newfoodRecall/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 ## Installation
 
-You can install the development version of newfoodRecall from
+You can install the development version of foodRecall from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
-pak::pak("loganjohnson0/newfoodRecall")
+pak::pak("loganjohnson0/foodRecall")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
+## Loading Package
 
 ``` r
-library(newfoodRecall)
-## basic example code
+library(foodRecall)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+## Introduction
+
+To use this package, you must register for an API key through the
+[openFDA website](https://open.fda.gov/apis/authentication/). This is a
+free API key that only requires your email address. You should receive
+it immediately upon request. Upon any issues with the API key itself,
+please contact the openFDA office. Be sure to not share your API key
+with anyone!
+
+<b>This product uses the openFDA API but is not endorsed or certified by
+the Food and Drug Administration.</b>
+
+## Save Your API Key
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+api_key <- "YOUR API KEY"
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
+We have developed a few different functions for you to search for
+different kinds of data. You can use either `recall_location` or
+`recall_date` to search for data on food recalls. See notation below as
+an example.
 
-You can also embed plots, for example:
+``` r
+location <- foodRecall::recall_location(api_key = api_key, 
+                                        city = "Ames", 
+                                        state = "Iowa")
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+date <- foodRecall::recall_date(api_key = api_key,
+                                report_date = "January 2023 to May 2023")
+```
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+You can also map the resulting data to see the location of the recall
+events, the impact of recall, and the number of recall events and
+individual products each recalling firm has recalled.
+
+``` r
+foodRecall::map_recall(data = df)
+```
